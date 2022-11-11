@@ -17,16 +17,20 @@ const app = express();
 
 app.set("view engine", "ejs");
 
+const _ = require("lodash");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/posts/:postID", (req, res) => {
-  const requestedPostID = req.params.postID;0
+  const requestedPostID = _.lowerCase(req.params.postID);
   posts.forEach((post) => {
-    const storedTitle = post.title;
+    const storedTitle = _.lowerCase(post.title);
     const storedContent = post.content;
     if (storedTitle === requestedPostID) {
       console.log("Match found!");
+    } else {
+      console.log("No match found");
     }
   });
 });
