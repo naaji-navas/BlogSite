@@ -28,10 +28,11 @@ app.get("/posts/:postID", (req, res) => {
     const storedTitle = _.lowerCase(post.title);
     const storedContent = post.content;
     if (storedTitle === requestedPostID) {
-      console.log("Match found!");
-    } else {
-      console.log("No match found");
-    }
+      res.render("post", {
+        title: post.title,
+        content: post.content,
+      });
+    } 
   });
 });
 
